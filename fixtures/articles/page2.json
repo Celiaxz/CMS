@@ -1,0 +1,46 @@
+{
+  "articles": [
+    {
+      "id": 3,
+      "title": "JavaScript-Promises erklärt",
+      "content": "Promises sind ein asynchrones Programmiermuster in JavaScript, das es ermöglicht, asynchrone Operationen sequenziell zu verketten und Fehler effizient zu behandeln.",
+      "author": {
+        "id": 103,
+        "name": "Alice Johnson",
+        "email": "alice.johnson@example.com",
+        "bio": "Alice ist eine erfahrene JavaScript-Entwicklerin und Tech-Bloggerin, die sich auf moderne Webtechnologien spezialisiert hat."
+      },
+      "category": {
+        "id": 201,
+        "name": "JavaScript",
+        "description": "Artikel, die sich mit JavaScript-Entwicklung, Sprachfunktionen und Best Practices befassen."
+      },
+      "tags": ["JavaScript", "Promises", "Asynchrone Programmierung"],
+      "comments": [
+        {
+          "id": 304,
+          "user": "David Miller",
+          "content": "Sehr gut erklärt! Danke für diesen Beitrag."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Einführung in RESTful APIs",
+      "content": "RESTful APIs sind ein architektonischer Stil für die Entwicklung von Webdiensten, der auf dem Konzept von Ressourcen und HTTP-Methoden basiert.",
+      "author": {
+        "id": 104,
+        "name": "Bob Williams",
+        "email": "bob.williams@example.com",
+        "bio": "Bob ist ein erfahrener Webentwickler und Softwarearchitekt, der sich auf die Entwicklung von RESTful APIs spezialisiert hat."
+      },
+      "category": {
+        "id": 203,
+        "name": "APIs",
+        "description": "Artikel und Tutorials zur Entwicklung von APIs und Webservices."
+      },
+      "tags": ["APIs", "REST", "Entwicklung"],
+      "comments": []
+    }
+  ]
+}

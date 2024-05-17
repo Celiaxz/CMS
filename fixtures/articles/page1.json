@@ -1,0 +1,57 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "title": "Einführung in Node.js",
+      "content": "Node.js ist eine Laufzeitumgebung, die es ermöglicht, JavaScript serverseitig auszuführen. Es basiert auf der V8 JavaScript-Engine von Google und wird häufig für die Entwicklung von serverseitigen Anwendungen verwendet.",
+      "author": {
+        "id": 101,
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "bio": "John ist ein erfahrener Softwareentwickler mit einem starken Hintergrund in der Webentwicklung und spezialisiert auf Node.js-Anwendungen."
+      },
+      "category": {
+        "id": 201,
+        "name": "Technologie",
+        "description": "Artikel, die sich mit aktuellen technologischen Entwicklungen und Trends befassen."
+      },
+      "tags": ["Node.js", "JavaScript", "Entwicklung"],
+      "comments": [
+        {
+          "id": 301,
+          "user": "Alice Smith",
+          "content": "Toller Artikel! Vielen Dank für die Einführung."
+        },
+        {
+          "id": 302,
+          "user": "Bob Johnson",
+          "content": "Sehr informativ. Ich freue mich auf mehr Artikel über Node.js."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Grundlagen der Webentwicklung",
+      "content": "Die Webentwicklung umfasst verschiedene Technologien wie HTML, CSS und JavaScript, die verwendet werden, um interaktive und ansprechende Websites zu erstellen.",
+      "author": {
+        "id": 102,
+        "name": "Jane Smith",
+        "email": "jane.smith@example.com",
+        "bio": "Jane ist eine leidenschaftliche Webentwicklerin und Bloggerin, die gerne ihr Wissen und ihre Erfahrungen teilt."
+      },
+      "category": {
+        "id": 202,
+        "name": "Webentwicklung",
+        "description": "Artikel und Tutorials zur Entwicklung von Websites, Webanwendungen und Frontend-Technologien."
+      },
+      "tags": ["HTML", "CSS", "JavaScript", "Webentwicklung"],
+      "comments": [
+        {
+          "id": 303,
+          "user": "Charlie Brown",
+          "content": "Danke für diesen hilfreichen Überblick!"
+        }
+      ]
+    }
+  ]
+}

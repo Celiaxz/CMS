@@ -1,0 +1,46 @@
+{
+  "articles": [
+    {
+      "id": 5,
+      "title": "Die Bedeutung von Datenbanken",
+      "content": "Datenbanken sind wesentliche Bestandteile von Anwendungen, die verwendet werden, um strukturierte Daten effizient zu speichern, abzurufen und zu verwalten.",
+      "author": {
+        "id": 105,
+        "name": "Eva Brown",
+        "email": "eva.brown@example.com",
+        "bio": "Eva ist eine Datenbank-Expertin und Softwarearchitektin mit langjähriger Erfahrung in der Entwicklung und Verwaltung von Datenbanken."
+      },
+      "category": {
+        "id": 204,
+        "name": "Datenbanken",
+        "description": "Artikel und Ressourcen zur Datenbankentwicklung, -verwaltung und -optimierung."
+      },
+      "tags": ["Datenbanken", "SQL", "NoSQL", "Entwicklung"],
+      "comments": [
+        {
+          "id": 305,
+          "user": "Frank Wilson",
+          "content": "Sehr interessanter Artikel! Ich habe viel gelernt."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Einführung in CSS-Grids",
+      "content": "CSS-Grids sind eine leistungsstarke Layout-Technik in CSS, die es ermöglicht, komplexe Layouts mit einem rasterbasierten Ansatz zu erstellen.",
+      "author": {
+        "id": 106,
+        "name": "Michael Lee",
+        "email": "michael.lee@example.com",
+        "bio": "Michael ist ein Frontend-Entwickler und UI-Designer mit einem Schwerpunkt auf CSS-Technologien und modernen Webdesign-Prinzipien."
+      },
+      "category": {
+        "id": 202,
+        "name": "CSS",
+        "description": "Artikel und Tutorials zur Gestaltung und Anpassung von CSS-Stilen und Layouts."
+      },
+      "tags": ["CSS", "Layout", "Webdesign"],
+      "comments": []
+    }
+  ]
+}
