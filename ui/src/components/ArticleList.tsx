@@ -3,14 +3,10 @@ import { useState, useEffect } from "react";
 import Pagination from "./Pagination";
 import {
   IArticle,
-  // TagAction,
   fetchAPage as _fetchAPage,
   fetchNumOfPages as _fetchNumOfPages,
   fetchFilteredArticles as _fetchFilteredArticles,
 } from "../utils";
-// import Sidebar from "./Sidebar";
-import "../App.css";
-// import Header from "./Header";
 import ArticleCard from "./ArticleCard";
 
 interface IArticleList {
@@ -57,16 +53,6 @@ const ArticleList = (props: IArticleList) => {
 
     fetchFilteredArticles();
   }, [selectedTags]);
-
-  // const updateSelectedTags = (tag: string, action: TagAction) => {
-  //   if (action == TagAction.Add) {
-  //     const updatedTags = [...selectedTags, tag];
-  //     setSelectedTags(updatedTags);
-  //   } else {
-  //     const updatedTags = selectedTags.filter((element) => element !== tag);
-  //     setSelectedTags(updatedTags);
-  //   }
-  // };
 
   const displayedArticles =
     filteredArticles.length > 0 ? filteredArticles : articles;
