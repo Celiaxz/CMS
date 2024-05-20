@@ -1,14 +1,7 @@
-const express = require("express");
-const fs = require("fs");
-const path = require("path");
+const app = require("./app");
+const config = require("./config/config");
+const PORT = config.port;
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-// ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
-require("./config/config")(app);
-
-// Helper function to read JSON files
-const readJsonFile = (filePath) => {
-  return JSON.parse(fs.readFileSync(filePath, "utf8"));
-};
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});

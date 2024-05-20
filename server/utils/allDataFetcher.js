@@ -1,12 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-// ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
-require("./config")(app);
-
 // Helper function to read JSON files
 const readJsonFile = (filePath) => {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
@@ -15,13 +9,13 @@ const readJsonFile = (filePath) => {
 const fetchAllData = () => {
   try {
     const data1 = readJsonFile(
-      path.join(__dirname, `fixtures/articles/page1.json`)
+      path.join(__dirname, `../fixtures/articles/page1.json`)
     );
     const data2 = readJsonFile(
-      path.join(__dirname, `fixtures/articles/page2.json`)
+      path.join(__dirname, `../fixtures/articles/page2.json`)
     );
     const data3 = readJsonFile(
-      path.join(__dirname, `fixtures/articles/page3.json`)
+      path.join(__dirname, `../fixtures/articles/page3.json`)
     );
     //all article comine  in one array
     const allData = {
@@ -37,7 +31,7 @@ const fetchAllData = () => {
 const fetchArticleByPage = (pageId) => {
   try {
     const data = readJsonFile(
-      path.join(__dirname, `fixtures/articles/page${pageId}.json`)
+      path.join(__dirname, `../fixtures/articles/page${pageId}.json`)
     );
     return data.articles;
   } catch (error) {
@@ -48,7 +42,9 @@ const fetchArticleByPage = (pageId) => {
 //fetch all categories
 const fetchCategories = () => {
   try {
-    const data = readJsonFile(path.join(__dirname, `fixtures/categories.json`));
+    const data = readJsonFile(
+      path.join(__dirname, `../fixtures/categories.json`)
+    );
     res.json(data);
   } catch (error) {
     console.log("error fetching categories ", error);

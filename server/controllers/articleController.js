@@ -5,7 +5,6 @@ const {
   fetchTags,
   fetchArticlesByTag,
   fetchArticleByCategory,
-  fetchArticlesByTag,
 } = require("../utils/allDataFetcher");
 
 //controller to get all articles
@@ -92,6 +91,7 @@ const getNumbOfPages = (req, res) => {
 module.exports = {
   getAllArticles,
   getArticlesByPage,
+  getArticleById,
   getArticlesByCategory,
   getArticlesByTag,
   getTags,
