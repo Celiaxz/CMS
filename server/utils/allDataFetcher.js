@@ -42,10 +42,8 @@ const fetchArticleByPage = (pageId) => {
 //fetch all categories
 const fetchCategories = () => {
   try {
-    const data = readJsonFile(
-      path.join(__dirname, `../fixtures/categories.json`)
-    );
-    res.json(data);
+    return readJsonFile(path.join(__dirname, `../fixtures/categories.json`));
+    //res.json(data);
   } catch (error) {
     console.log("error fetching categories ", error);
   }

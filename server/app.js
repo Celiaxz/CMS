@@ -22,7 +22,7 @@ const {
 
 const { getCategories } = require("./controllers/categoryController");
 
-app.get("api/categories", getCategories);
+app.get("/api/categories", getCategories);
 
 app.get("/api/articles", getAllArticles);
 app.get("/api/articles/page/:id", getArticlesByPage);
