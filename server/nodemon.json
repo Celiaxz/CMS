@@ -1,0 +1,10 @@
+{
+  "watch": [
+    "fixtures/articles/page1.json",
+    "fixtures/articles/page2.json",
+    "fixtures/articles/page3.json",
+    "server.js"
+  ],
+  "ext": "js,json",
+  "exec": "node server.js"
+}
