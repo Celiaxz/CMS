@@ -32,7 +32,7 @@ const {
   getArticlesByPage,
   getArticleById,
   getArticlesByCategory,
-  getArticlesByTag,
+  //   getArticlesByTag,
   getTags,
   filterArticlesByTags,
   getNumbOfPages,
@@ -46,9 +46,10 @@ app.get("/api/articles", getAllArticles);
 app.get("/api/articles/page/:id", getArticlesByPage);
 app.get("/api/articles/:id", getArticleById);
 app.get("/api/articles/category/:id", getArticlesByCategory);
-app.get("/api/articles/tag/:id", getArticlesByTag);
-app.get("/api/articles/tags", getTags);
-app.post("/api/articles/filter/tags", filterArticlesByTags);
-app.get("/api/articles/numofpages", getNumbOfPages);
+
+app.get("/api/tags", getTags);
+app.post("/api/tags/filter", filterArticlesByTags);
+
+app.get("/api/numofpages", getNumbOfPages);
 
 module.exports = app;

@@ -3,7 +3,8 @@
     "fixtures/articles/page1.json",
     "fixtures/articles/page2.json",
     "fixtures/articles/page3.json",
-    "server.js"
+    "server.js",
+    "app.js"
   ],
   "ext": "js,json",
   "exec": "node server.js"

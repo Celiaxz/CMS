@@ -64,17 +64,17 @@ const fetchArticleByCategory = (categoryId) => {
 };
 
 // Fetch articles by tag ID
-const fetchArticlesByTag = (tagId) => {
-  const allData = fetchAllData();
-  return allData.filter((article) => article.tags.includes(tagId));
-};
+// const fetchArticlesByTag = (tagId) => {
+//   const allData = fetchAllData();
+//   return allData.filter((article) => article.tags.includes(tagId));
+// };
 
 // Fetch all unique tags
 const fetchTags = () => {
   const allData = fetchAllData();
   const allTags = new Set();
   if (allData.length === 0) {
-    return null;
+    return [];
   }
   allData.forEach((article) => {
     article.tags.forEach((tag) => {
@@ -98,7 +98,7 @@ module.exports = {
   fetchCategories,
   fetchArticleById,
   fetchArticleByCategory,
-  fetchArticlesByTag,
+  //   fetchArticlesByTag,
   fetchTags,
   filterArticleByTags,
 };
