@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASE_URL } from "../config/config.index";
 
 export interface ICategory {
   id: string;
@@ -65,11 +66,11 @@ export interface IArticleResponse {
   error?: string;
 }
 
-const baseurl = "http://localhost:3000/api/";
+// const BASE_URL = import.meta.env.SERVER_BASE_URL;
 
 export const fetchCategories = async () => {
   try {
-    const response = await axios.get(`${baseurl}categories`);
+    const response = await axios.get(`${BASE_URL}categories`);
     const categories: ICategoriesResponse = {
       success: true,
       categoryData: response.data,
@@ -87,7 +88,7 @@ export const fetchCategories = async () => {
 
 export const fetchTags = async () => {
   try {
-    const response = await axios.get(`${baseurl}tags`);
+    const response = await axios.get(`${BASE_URL}tags`);
     return {
       success: true,
       tagData: response.data,
@@ -105,7 +106,7 @@ export const fetchTags = async () => {
 
 export const fetchAPage = async (pageNum: number) => {
   try {
-    const response = await axios.get(`${baseurl}articles/page/${pageNum}`);
+    const response = await axios.get(`${BASE_URL}articles/page/${pageNum}`);
     return {
       success: true,
       articlesData: response.data,
@@ -122,7 +123,7 @@ export const fetchAPage = async (pageNum: number) => {
 
 export const fetchNumOfPages = async () => {
   try {
-    const response = await axios.get(`${baseurl}numofpages`);
+    const response = await axios.get(`${BASE_URL}numofpages`);
     return {
       success: true,
       totalPage: response.data,
@@ -138,7 +139,7 @@ export const fetchNumOfPages = async () => {
 
 export const fetchArticle = async (id: string) => {
   try {
-    const response = await axios.get(`${baseurl}articles/${id}`);
+    const response = await axios.get(`${BASE_URL}articles/${id}`);
     return {
       success: true,
       articleData: response.data,
@@ -157,7 +158,7 @@ export const fetchFilteredArticles = async (
   selectedCategories: string[]
 ) => {
   try {
-    const response = await axios.post(`${baseurl}filter/articles`, {
+    const response = await axios.post(`${BASE_URL}filter/articles`, {
       tags: selectedTags,
       categories: selectedCategories,
     });
