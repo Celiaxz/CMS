@@ -38,7 +38,7 @@ const Sidebar = (props: ISideBar) => {
   }, []);
 
   return (
-    <aside className="w-64 bg-blue-100 p-4 ">
+    <aside className="w-[25%] h-[100vh] bg-blue-100 p-4  ">
       <h2 className="font-bold text-xl text-blue-900 mb-4">Categories</h2>
       <article>
         <ul>
@@ -50,7 +50,7 @@ const Sidebar = (props: ISideBar) => {
       <h2 className="font-bold text-xl text-blue-900 mb-4 flex justify-between items-center">
         Filter by Tags
       </h2>
-      <div>
+      <div className="flex flex-col">
         {tags.map((tag) => (
           <Tag tag={tag} onClickCheckbox={props.onClickCheckbox} />
         ))}

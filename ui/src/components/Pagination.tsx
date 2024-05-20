@@ -16,12 +16,13 @@ const Pagination = (props: IPagination) => {
 
   return (
     <nav>
-      <ul className="pagination">
+      <ul className=" flex gap-2 mt-8">
         {pageNumbers.map((number) => (
-          <li key={number} className="page-item">
-            <a onClick={() => updateCurrentPage(number)} className="page-link">
-              {number}
-            </a>
+          <li
+            key={number}
+            className=" hover:bg-blue-300 cursor-pointer w-[25px] h-[25px] border text-center rounded-sm"
+          >
+            <button onClick={() => updateCurrentPage(number)}>{number}</button>
           </li>
         ))}
       </ul>
