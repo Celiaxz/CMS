@@ -1,0 +1,4 @@
+[build]
+base = "/ui"
+publish = "public"
+command = "npm run build"
