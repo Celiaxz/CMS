@@ -1,7 +1,7 @@
 const Header = () => {
   return (
     <header className="w-full  bg-blue-900 text-white p-4 flex justify-between items-center">
-      <div className="text-2xl font-bold">CMS</div>
+      <div className="text-2xl font-bold">Articles</div>
       <div className="search-bar">
         <input
           type="text"
