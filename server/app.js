@@ -1,11 +1,29 @@
 const express = require("express");
-const app = express();
-
+const mongoose = require("mongoose");
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 const configMiddleware = require("./config");
+const userRoutes = require("./routes/userRoutes");
+const authMiddleware = require("./midleware/authMiddleware");
+
+const app = express();
 
 //middleware config
 configMiddleware(app);
+//import user route
+const MONGO_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/CMS";
+// MongoDB connection
+mongoose
+  .connect(MONGO_URI)
+  .then((x) => {
+    const dbName = x.connections[0].name;
+    console.log(`Connected to Mongo! Database name: "${dbName}"`);
+  })
+  .catch((err) => {
+    console.error("Error connecting to mongo: ", err);
+  });
+
+// User routes
+app.use("/api/users", userRoutes);
 
 //import all routes/controllers
 

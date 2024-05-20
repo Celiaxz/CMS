@@ -5,17 +5,18 @@ const {
   fetchTags,
   fetchArticlesByTag,
   fetchArticleByCategory,
+  filterArticleByTags,
 } = require("../utils/allDataFetcher");
 
-//controller to get all articles
+// Controller to get all articles
 const getAllArticles = (req, res) => {
   const articles = fetchAllData();
   res.json(articles);
 };
 
-//controller to get articles by page
+// Controller to get articles by page
 const getArticlesByPage = (req, res) => {
-  const pageId = req.params.pageId;
+  const pageId = req.params.id;
   const articles = fetchArticleByPage(pageId);
   if (articles) {
     res.json(articles);
@@ -34,56 +35,44 @@ const getArticleById = (req, res) => {
   }
 };
 
-// app.get("/category/:id", (req, res) => {
-//   const id = req.params.id;
-//   const allData = fetchAllData();
-//   const category = [];
-//   if (allData.length == 0) {
-//     res.json("Page not found!");
-//   } else {
-//     allData.forEach((article) => {
-//       if (article.category.name === id) {
-//         category.push(article);
-//       }
-//     });
-//     res.json(category);
-//   }
-// });
-
-// controller to get a signle article by ID
+// Controller to get articles by category
 const getArticlesByCategory = (req, res) => {
   const articles = fetchArticleByCategory(req.params.id);
-  res.json(articles);
+  if (articles) {
+    res.json(articles);
+  } else {
+    res.status(404).json({ message: "Category not found!" });
+  }
 };
 
-//controller to get articles by tag
+// Controller to get articles by tag
 const getArticlesByTag = (req, res) => {
   const articles = fetchArticlesByTag(req.params.id);
-  res.json(articles);
+  if (articles) {
+    res.json(articles);
+  } else {
+    res.status(404).json({ message: "Tag not found!" });
+  }
 };
 
 // Controller to get all tags
 const getTags = (req, res) => {
   const tags = fetchTags();
-  res.json(tags);
+  if (tags) {
+    res.json(tags);
+  } else {
+    res.status(404).json({ message: "Tag not found!" });
+  }
 };
+
 // Controller to filter articles by tags
 const filterArticlesByTags = (req, res) => {
   const requestTags = req.body.tags;
-  const articles = filterArticlesByTags(requestTags);
+  const articles = filterArticleByTags(requestTags);
   res.json(articles);
 };
 
-// app.get("/numofpages", (req, res) => {
-//   try {
-//     res.json(3);
-//   } catch (e) {
-//     console.log("Error: ", e);
-//     res.json("Page not found!");
-//   }
-// });
-
-//controller to get the number of pages
+// Controller to get the number of pages
 const getNumbOfPages = (req, res) => {
   res.json(3);
 };

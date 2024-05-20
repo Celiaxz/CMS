@@ -6,6 +6,7 @@ const readJsonFile = (filePath) => {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
 };
 
+// Fetch all data from the JSON files
 const fetchAllData = () => {
   try {
     const data1 = readJsonFile(
@@ -17,7 +18,6 @@ const fetchAllData = () => {
     const data3 = readJsonFile(
       path.join(__dirname, `../fixtures/articles/page3.json`)
     );
-    //all article comine  in one array
     const allData = {
       articles: [...data1.articles, ...data2.articles, ...data3.articles],
     };
@@ -27,7 +27,8 @@ const fetchAllData = () => {
     return [];
   }
 };
-//get article for particular page(paginatation)
+
+// Get articles for a specific page
 const fetchArticleByPage = (pageId) => {
   try {
     const data = readJsonFile(
@@ -35,73 +36,55 @@ const fetchArticleByPage = (pageId) => {
     );
     return data.articles;
   } catch (error) {
-    console.error("error while handling", error);
+    console.error("Error while handling", error);
     return null;
   }
 };
-//fetch all categories
+
+// Fetch all categories
 const fetchCategories = () => {
   try {
     return readJsonFile(path.join(__dirname, `../fixtures/categories.json`));
-    //res.json(data);
   } catch (error) {
-    console.log("error fetching categories ", error);
+    console.error("Error fetching categories ", error);
+    return null;
   }
 };
-//fetch single article by its own id
-//search all data array for add that matches id parameter
-const fetchArticleById = () => {
+
+// Fetch a single article by ID
+const fetchArticleById = (id) => {
   const allData = fetchAllData();
   return allData.find((article) => `${article.id}` === id);
 };
 
-//fetch articles by category
-const fetchArticleByCategory = () => {
+// Fetch articles by category ID
+const fetchArticleByCategory = (categoryId) => {
   const allData = fetchAllData();
-  return allData.filter((article) => article.category.name === categoryId);
+  return allData.filter((article) => `${article.category.id}` === categoryId);
 };
 
-//fetch articlec by tag
+// Fetch articles by tag ID
 const fetchArticlesByTag = (tagId) => {
   const allData = fetchAllData();
   return allData.filter((article) => article.tags.includes(tagId));
 };
 
-// const allData = fetchAllData();
-// const allTags = new Set();
-// if (allData.length == 0) {
-//   res.json("Page not found!");
-// } else {
-//   allData.forEach((article) => {
-//     article.tags.forEach((tag) => {
-//       allTags.add(tag);
-//     });
-//   });
-//   res.json([...allTags]);
-// }
-
-//fetch all unique tags
+// Fetch all unique tags
 const fetchTags = () => {
   const allData = fetchAllData();
-  //new set creates and checks
-  const tags = new Set();
+  const allTags = new Set();
+  if (allData.length === 0) {
+    return null;
+  }
   allData.forEach((article) => {
-    article.tags.forEach((tag) => tags.add(tag));
+    article.tags.forEach((tag) => {
+      allTags.add(tag);
+    });
   });
-  return [...tags];
+  return [...allTags];
 };
 
-// const isTagIncluded = (requestTags, articleTags) => {
-//   for (let i = 0; i <= articleTags.length; i++) {
-//     const tag = articleTags[i];
-//     if (requestTags.includes(tag)) {
-//       return true;
-//     }
-//   }
-//   return false;
-// };
-
-//filter articles by multiple tags
+// Filter articles by multiple tags
 const filterArticleByTags = (requestTags) => {
   const allData = fetchAllData();
   return allData.filter((article) =>
