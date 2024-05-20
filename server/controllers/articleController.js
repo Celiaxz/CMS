@@ -3,9 +3,10 @@ const {
   fetchArticleByPage,
   fetchArticleById,
   fetchTags,
-  fetchArticlesByTag,
   fetchArticleByCategory,
   filterArticleByTags,
+  filterArticleByCategories,
+  filterArticleByTagsAndCategories,
 } = require("../utils/allDataFetcher");
 
 // Controller to get all articles
@@ -66,10 +67,34 @@ const getTags = (req, res) => {
 };
 
 // Controller to filter articles by tags
-const filterArticlesByTags = (req, res) => {
+/**
+ *req: {
+  body:{
+    tags: [],
+    categories: []
+  }
+ } 
+ *
+ */
+const filterArticles = (req, res) => {
   const requestTags = req.body.tags;
-  const articles = filterArticleByTags(requestTags);
-  res.json(articles);
+  const requestCategories = req.body.categories;
+
+  if (requestTags.length === 0 && requestCategories.length === 0) {
+    res.json([]);
+  } else if (requestTags.length > 0 && requestCategories.length === 0) {
+    const articles = filterArticleByTags(requestTags);
+    res.json(articles);
+  } else if (requestCategories.length > 0 && requestTags.length === 0) {
+    const articles = filterArticleByCategories(requestCategories);
+    res.json(articles);
+  } else {
+    const articles = filterArticleByTagsAndCategories(
+      requestTags,
+      requestCategories
+    );
+    res.json(articles);
+  }
 };
 
 // Controller to get the number of pages
@@ -84,6 +109,6 @@ module.exports = {
   getArticlesByCategory,
   getArticlesByTag,
   getTags,
-  filterArticlesByTags,
+  filterArticles,
   getNumbOfPages,
 };

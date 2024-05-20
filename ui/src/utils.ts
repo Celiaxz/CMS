@@ -12,7 +12,7 @@ export interface ICategoriesResponse {
   error?: string;
 }
 
-export enum TagAction {
+export enum CheckboxAction {
   Add,
   Remove,
 }
@@ -152,10 +152,14 @@ export const fetchArticle = async (id: string) => {
   }
 };
 
-export const fetchFilteredArticles = async (selectedTags: string[]) => {
+export const fetchFilteredArticles = async (
+  selectedTags: string[],
+  selectedCategories: string[]
+) => {
   try {
-    const response = await axios.post(`${baseurl}tags/filter`, {
+    const response = await axios.post(`${baseurl}filter/articles`, {
       tags: selectedTags,
+      categories: selectedCategories,
     });
     return {
       success: true,

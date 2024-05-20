@@ -11,10 +11,11 @@ import ArticleCard from "./ArticleCard";
 
 interface IArticleList {
   selectedTags: string[];
+  selectedCategories: string[];
 }
 
 const ArticleList = (props: IArticleList) => {
-  const { selectedTags } = props;
+  const { selectedTags, selectedCategories } = props;
   const [articles, setArticles] = useState([] as IArticle[]);
   const [filteredArticles, setFilteredArticles] = useState([] as IArticle[]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -45,26 +46,39 @@ const ArticleList = (props: IArticleList) => {
 
   useEffect(() => {
     const fetchFilteredArticles = async () => {
-      const pageResponse = await _fetchFilteredArticles(selectedTags);
+      const pageResponse = await _fetchFilteredArticles(
+        selectedTags,
+        selectedCategories
+      );
       if (pageResponse.success) {
         setFilteredArticles(pageResponse.articlesData);
       }
     };
 
     fetchFilteredArticles();
-  }, [selectedTags]);
+  }, [selectedTags, selectedCategories]);
 
   const displayedArticles =
     filteredArticles.length > 0 ? filteredArticles : articles;
 
-  const shouldShowPagination = filteredArticles.length === 0;
+  const shouldDisplayNoDataFound = () => {
+    const filterIsApplied =
+      selectedTags.length > 0 || selectedCategories.length > 0;
+    const noFilteredArticleFound = filteredArticles.length === 0;
+    return filterIsApplied && noFilteredArticleFound;
+  };
+
+  const displayNoDataMessage = shouldDisplayNoDataFound();
+
+  const shouldShowPagination =
+    filteredArticles.length === 0 && !displayNoDataMessage;
 
   return (
     <div className="w-[75%] flex-1 flex flex-col left-0   p-4 flex-wrap  ">
       <div className="flex flex-wrap gap-2">
-        {displayedArticles.map((article) => (
-          <ArticleCard article={article} />
-        ))}
+        {displayNoDataMessage && <div>No Data Found. Please check filters</div>}
+        {!displayNoDataMessage &&
+          displayedArticles.map((article) => <ArticleCard article={article} />)}
       </div>
       <div className="flex flex-start">
         {shouldShowPagination && (

@@ -2,14 +2,15 @@ import { useState, useEffect } from "react";
 
 import {
   ICategory,
-  TagAction,
+  CheckboxAction,
   fetchCategories as _fetchCategories,
   fetchTags as _fetchTags,
 } from "../utils";
-import Tag from "./Tag";
+import Checkbox from "./Checkbox";
 
 interface ISideBar {
-  onClickCheckbox: (tag: string, action: TagAction) => void;
+  onClickTagbox: (tag: string, action: CheckboxAction) => void;
+  onClickCategorybox: (tag: string, action: CheckboxAction) => void;
 }
 
 const Sidebar = (props: ISideBar) => {
@@ -40,19 +41,22 @@ const Sidebar = (props: ISideBar) => {
   return (
     <aside className="w-[25%] h-[100vh] bg-blue-100 p-4  ">
       <h2 className="font-bold text-xl text-blue-900 mb-4">Categories</h2>
-      <article>
-        <ul>
-          {categories.map((category) => (
-            <li key={category.id}>{category.name}</li>
-          ))}
-        </ul>
-      </article>
+
+      <div className="flex flex-col">
+        {categories.map((category) => (
+          <Checkbox
+            fieldName={category.name}
+            onClickCheckbox={props.onClickCategorybox}
+          />
+        ))}
+      </div>
+
       <h2 className="font-bold text-xl text-blue-900 mb-4 flex justify-between items-center">
         Filter by Tags
       </h2>
       <div className="flex flex-col">
         {tags.map((tag) => (
-          <Tag tag={tag} onClickCheckbox={props.onClickCheckbox} />
+          <Checkbox fieldName={tag} onClickCheckbox={props.onClickTagbox} />
         ))}
       </div>
     </aside>

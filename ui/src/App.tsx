@@ -4,13 +4,13 @@ import ArticleDetail from "./components/ArticleDetail";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import { useState } from "react";
-import { TagAction } from "./utils";
+import { CheckboxAction } from "./utils";
 
 function App() {
   const [selectedTags, setSelectedTags] = useState([] as string[]);
-
-  const updateSelectedTags = (tag: string, action: TagAction) => {
-    if (action == TagAction.Add) {
+  const [selectedCategories, setSelectedCategories] = useState([] as string[]);
+  const updateSelectedTags = (tag: string, action: CheckboxAction) => {
+    if (action == CheckboxAction.Add) {
       const updatedTags = [...selectedTags, tag];
       setSelectedTags(updatedTags);
     } else {
@@ -19,16 +19,36 @@ function App() {
     }
   };
 
+  const updateSelectedCategories = (tag: string, action: CheckboxAction) => {
+    if (action == CheckboxAction.Add) {
+      const updatedCategories = [...selectedCategories, tag];
+      setSelectedCategories(updatedCategories);
+    } else {
+      const updatedCategories = selectedCategories.filter(
+        (element) => element !== tag
+      );
+      setSelectedCategories(updatedCategories);
+    }
+  };
+
   return (
     <>
       <div className="flex flex-col">
         <Header />
         <div className="flex flex-1">
-          <Sidebar onClickCheckbox={updateSelectedTags} />
+          <Sidebar
+            onClickTagbox={updateSelectedTags}
+            onClickCategorybox={updateSelectedCategories}
+          />
           <Routes>
             <Route
               path="/"
-              element={<ArticleList selectedTags={selectedTags} />}
+              element={
+                <ArticleList
+                  selectedTags={selectedTags}
+                  selectedCategories={selectedCategories}
+                />
+              }
             />
             <Route path="/article/:id" element={<ArticleDetail />} />
           </Routes>

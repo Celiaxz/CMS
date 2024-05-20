@@ -34,7 +34,7 @@ const {
   getArticlesByCategory,
   //   getArticlesByTag,
   getTags,
-  filterArticlesByTags,
+  filterArticles,
   getNumbOfPages,
 } = require("./controllers/articleController");
 
@@ -48,7 +48,7 @@ app.get("/api/articles/:id", getArticleById);
 app.get("/api/articles/category/:id", getArticlesByCategory);
 
 app.get("/api/tags", getTags);
-app.post("/api/tags/filter", filterArticlesByTags);
+app.post("/api/filter/articles", filterArticles);
 
 app.get("/api/numofpages", getNumbOfPages);
 

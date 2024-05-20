@@ -92,6 +92,30 @@ const filterArticleByTags = (requestTags) => {
   );
 };
 
+// Filter articles by multiple categories
+const filterArticleByCategories = (requestCategories) => {
+  const allData = fetchAllData();
+  return allData.filter((article) =>
+    requestCategories.some((categories) =>
+      article.category.name.includes(categories)
+    )
+  );
+};
+
+// Filter articles by multiple categories
+const filterArticleByTagsAndCategories = (requestTags, requestCategories) => {
+  const allData = fetchAllData();
+  return allData.filter((article) => {
+    const shouldIncludeTag = requestTags.some((tag) =>
+      article.tags.includes(tag)
+    );
+    const shouldIncludeCategory = requestCategories.some((categories) =>
+      article.category.name.includes(categories)
+    );
+    return shouldIncludeTag && shouldIncludeCategory;
+  });
+};
+
 module.exports = {
   fetchAllData,
   fetchArticleByPage,
@@ -101,4 +125,6 @@ module.exports = {
   //   fetchArticlesByTag,
   fetchTags,
   filterArticleByTags,
+  filterArticleByCategories,
+  filterArticleByTagsAndCategories,
 };
