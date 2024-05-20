@@ -5,7 +5,7 @@ interface IPagination {
 }
 
 const Pagination = (props: IPagination) => {
-  const { currentPage, totalPage, updateCurrentPage } = props;
+  const { totalPage, updateCurrentPage } = props;
   const pageNumbers = [];
 
   for (let i = 1; i <= totalPage; i++) {
