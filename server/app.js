@@ -2,9 +2,20 @@ const express = require("express");
 const mongoose = require("mongoose");
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 const configMiddleware = require("./config");
-const userRoutes = require("./routes/userRoutes");
-const authMiddleware = require("./midleware/authMiddleware");
 
+const authMiddleware = require("./midleware/authMiddleware");
+const { loginUser, registerUser } = require("./controllers/userController");
+//import all routes/controllers
+const {
+  getAllArticles,
+  getArticlesByPage,
+  getArticleById,
+  getArticlesByCategory,
+  getTags,
+  filterArticles,
+  getNumbOfPages,
+} = require("./controllers/articleController");
+const { getCategories } = require("./controllers/categoryController");
 const app = express();
 
 //middleware config
@@ -22,23 +33,9 @@ mongoose
     console.error("Error connecting to mongo: ", err);
   });
 
-// User routes
-app.use("/api/users", userRoutes);
-
-//import all routes/controllers
-
-const {
-  getAllArticles,
-  getArticlesByPage,
-  getArticleById,
-  getArticlesByCategory,
-  //   getArticlesByTag,
-  getTags,
-  filterArticles,
-  getNumbOfPages,
-} = require("./controllers/articleController");
-
-const { getCategories } = require("./controllers/categoryController");
+// user routes
+app.post("/api/users/register", registerUser);
+app.post("/api/users/login", loginUser);
 
 app.get("/api/categories", getCategories);
 
@@ -48,6 +45,7 @@ app.get("/api/articles/:id", getArticleById);
 app.get("/api/articles/category/:id", getArticlesByCategory);
 
 app.get("/api/tags", getTags);
+
 app.post("/api/filter/articles", filterArticles);
 
 app.get("/api/numofpages", getNumbOfPages);

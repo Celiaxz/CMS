@@ -1,10 +1,12 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import ArticleList from "./components/ArticleList";
 import ArticleDetail from "./components/ArticleDetail";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import { useState } from "react";
 import { CheckboxAction } from "./utils";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 function App() {
   const [selectedTags, setSelectedTags] = useState([] as string[]);
@@ -31,18 +33,30 @@ function App() {
     }
   };
 
+  // hook to conditionally render sidebar
+  const useShowSidebar = () => {
+    const location = useLocation();
+    return location.pathname.startsWith("/article");
+  };
+
+  const showSidebar = useShowSidebar();
+
   return (
     <>
       <div className="flex flex-col">
         <Header />
         <div className="flex flex-1">
-          <Sidebar
-            onClickTagbox={updateSelectedTags}
-            onClickCategorybox={updateSelectedCategories}
-          />
+          {showSidebar && (
+            <Sidebar
+              onClickTagbox={updateSelectedTags}
+              onClickCategorybox={updateSelectedCategories}
+            />
+          )}
           <Routes>
+            <Route path="/" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
             <Route
-              path="/"
+              path="/article"
               element={
                 <ArticleList
                   selectedTags={selectedTags}
