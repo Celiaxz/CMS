@@ -11,7 +11,7 @@ import { BASE_URL } from "../../config/config.index";
 
 const AuthContext = createContext<any>(undefined);
 
-const AuthContextWrapper = ({ children }) => {
+const AuthContextWrapper = (props: any) => {
   const [user, setUser] = useState(null);
   //user will be an object {user_id, username, email}
   const [isLoading, setIsLoading] = useState(true);
@@ -41,7 +41,7 @@ const AuthContextWrapper = ({ children }) => {
         //navigate to home for now, we'll see later where to redirect
         navigate("/article");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
       setErrorMessage(error.response?.data?.errorMessage);
     }
@@ -90,7 +90,7 @@ const AuthContextWrapper = ({ children }) => {
         errorMessage,
       }}
     >
-      {children}
+      {props.children}
     </AuthContext.Provider>
   );
 };
