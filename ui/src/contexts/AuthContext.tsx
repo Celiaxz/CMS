@@ -49,7 +49,7 @@ const AuthContextWrapper = (props: any) => {
     if (tokenInStorage) {
       try {
         //check if the token format is valid "Bearer blabla" with the backend middleware
-        const response = await axios.get(`${BASE_URL}/auth/verify`, {
+        const response = await axios.get(`${BASE_URL}users/verify`, {
           headers: {
             authorization: `Bearer ${tokenInStorage}`,
           },

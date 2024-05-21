@@ -46,7 +46,12 @@ const loginUser = async (req, res) => {
   }
 };
 
+const verifyUser = async (req, res) => {
+  return res.json("User credentials is valid");
+};
+
 module.exports = {
   registerUser,
   loginUser,
+  verifyUser,
 };

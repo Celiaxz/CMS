@@ -4,7 +4,11 @@ const mongoose = require("mongoose");
 const configMiddleware = require("./config");
 
 const authMiddleware = require("./midleware/authMiddleware");
-const { loginUser, registerUser } = require("./controllers/userController");
+const {
+  loginUser,
+  registerUser,
+  verifyUser,
+} = require("./controllers/userController");
 //import all routes/controllers
 const {
   getAllArticles,
@@ -36,6 +40,7 @@ mongoose
 // user routes
 app.post("/api/users/register", registerUser);
 app.post("/api/users/login", loginUser);
+app.get("/api/users/verify", authMiddleware, verifyUser);
 
 app.get("/api/categories", getCategories);
 
