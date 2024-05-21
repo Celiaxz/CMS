@@ -3,12 +3,6 @@ import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../config/config.index";
 
-// interface AuthContextType {
-//   isAuthenticated: boolean;
-//   login: (token: string) => void;
-//   logout: () => void;
-// }
-
 const AuthContext = createContext<any>(undefined);
 
 const AuthContextWrapper = (props: any) => {
