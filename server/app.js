@@ -45,14 +45,14 @@ app.get("/api/users/verify", authMiddleware, verifyUser);
 app.get("/api/categories", getCategories);
 
 app.get("/api/articles", getAllArticles);
-app.get("/api/articles/page/:id", getArticlesByPage);
 app.get("/api/articles/:id", getArticleById);
 app.get("/api/articles/category/:id", getArticlesByCategory);
 
 app.get("/api/tags", getTags);
 
-app.post("/api/filter/articles", filterArticles);
+app.post("/api/filter/articles", filterArticles); // for filtering tags & categories
 
+app.get("/api/articles/page/:id", getArticlesByPage); //get articles in a page
 app.get("/api/numofpages", getNumbOfPages);
 
 module.exports = app;

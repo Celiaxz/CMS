@@ -16,6 +16,7 @@ const getAllArticles = (req, res) => {
 };
 
 // Controller to get articles by page
+// returns article in the page number (page 1, 2, 3)
 const getArticlesByPage = (req, res) => {
   const pageId = req.params.id;
   const articles = fetchArticleByPage(pageId);

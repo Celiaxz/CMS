@@ -58,9 +58,14 @@ const ArticleList = (props: IArticleList) => {
     fetchFilteredArticles();
   }, [selectedTags, selectedCategories]);
 
+  // if filtered articles are available, display it
+  // else display normal page article
   const displayedArticles =
     filteredArticles.length > 0 ? filteredArticles : articles;
 
+  // Should display no data found when we have filters applied
+  // but server did not return any data for the filters.
+  // This can occur when user have both category and tag filters applied
   const shouldDisplayNoDataFound = () => {
     const filterIsApplied =
       selectedTags.length > 0 || selectedCategories.length > 0;
@@ -70,9 +75,6 @@ const ArticleList = (props: IArticleList) => {
 
   const displayNoDataMessage = shouldDisplayNoDataFound();
 
-  const shouldShowPagination =
-    filteredArticles.length === 0 && !displayNoDataMessage;
-
   return (
     <div className="w-[75%] flex-1 flex flex-col left-0   p-4 flex-wrap  ">
       <div className="flex flex-wrap gap-2">
@@ -81,7 +83,7 @@ const ArticleList = (props: IArticleList) => {
           displayedArticles.map((article) => <ArticleCard article={article} />)}
       </div>
       <div className="flex flex-start">
-        {shouldShowPagination && (
+        {!displayNoDataMessage && (
           <Pagination
             currentPage={currentPage}
             totalPage={totalPage}
