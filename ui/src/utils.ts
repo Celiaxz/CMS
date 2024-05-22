@@ -102,6 +102,7 @@ export const fetchTags = async () => {
     } as ITagsResponse;
   }
 };
+
 //fetch each article page
 
 export const fetchAPage = async (pageNum: number) => {

@@ -42,7 +42,7 @@ function Signup() {
         height: "80vh",
       }}
     >
-      <h1 style={{ fontSize: "4rem", marginBottom: "0.5rem" }}>
+      <h1 style={{ fontSize: "3rem", marginBottom: "0.5rem" }}>
         Welcome to HappyCMS
       </h1>
       <p style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>
