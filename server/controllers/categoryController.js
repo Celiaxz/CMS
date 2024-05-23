@@ -1,6 +1,7 @@
 const { fetchCategories } = require("../utils/allDataFetcher");
 
-//controller to get all categories
+//handle request to get all categories
+//calls fetchcategorie to retrieve categories and send as JSON
 const getCategories = (req, res) => {
   const categories = fetchCategories();
   if (categories) {

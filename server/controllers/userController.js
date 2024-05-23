@@ -46,6 +46,7 @@ const loginUser = async (req, res) => {
   }
 };
 
+//simple verify with a message that user credential is valid
 const verifyUser = async (req, res) => {
   return res.json("User credentials is valid");
 };

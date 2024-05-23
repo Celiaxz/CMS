@@ -85,6 +85,9 @@ const fetchTags = () => {
 };
 
 // Filter articles by multiple tags
+//filter to return an array of articles that incle atleast one of the tags requested
+//some to check if atleast one of the elements of the array passes the test of the function
+//reurn true if any reguestags are included in the tags
 const filterArticleByTags = (requestTags) => {
   const allData = fetchAllData();
   return allData.filter((article) =>
@@ -103,6 +106,8 @@ const filterArticleByCategories = (requestCategories) => {
 };
 
 // Filter articles by multiple categories
+// filte article based on both tags and categories
+//return an aray of article that icludes atleast one
 const filterArticleByTagsAndCategories = (requestTags, requestCategories) => {
   const allData = fetchAllData();
   return allData.filter((article) => {
