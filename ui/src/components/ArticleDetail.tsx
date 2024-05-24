@@ -6,6 +6,8 @@ const ArticleDetail = () => {
   const [article, setArticle] = useState(undefined as IArticle | undefined);
   const { id } = useParams();
 
+  //useffect to fetch article data on component mount
+  //if sucessful update article with fetched data
   useEffect(() => {
     const fetchArticle = async () => {
       const articleResponse = await _fetchArticle(id as string);
@@ -16,7 +18,7 @@ const ArticleDetail = () => {
     fetchArticle();
   }, []);
 
-  if (!article) return <div>Loading...</div>;
+  if (!article) return <div>Loading...</div>; //loading message if article data is not yet available
 
   return (
     <div className="flex flex-col p-5">

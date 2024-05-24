@@ -21,7 +21,7 @@ const ArticleList = (props: IArticleList) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
 
-  // run only once when component mounts
+  // run only once when component mounts to fetch  total number of pages
   useEffect(() => {
     const fetchpageNumber = async () => {
       const pageNumResponse = await _fetchNumOfPages();
@@ -32,7 +32,7 @@ const ArticleList = (props: IArticleList) => {
     fetchpageNumber();
   }, []);
 
-  // run each time currentPage changes
+  // run each time currentPage changes (to fetch artcicles for current page)
   useEffect(() => {
     const fetchpageContent = async () => {
       const pageResponse = await _fetchAPage(currentPage);
@@ -44,6 +44,7 @@ const ArticleList = (props: IArticleList) => {
     fetchpageContent();
   }, [currentPage]);
 
+  //usefect to fetch articles based on selected tags/categories each time they change
   useEffect(() => {
     const fetchFilteredArticles = async () => {
       const pageResponse = await _fetchFilteredArticles(
@@ -80,7 +81,9 @@ const ArticleList = (props: IArticleList) => {
       <div className="flex flex-wrap gap-2">
         {displayNoDataMessage && <div>No Data Found. Please check filters</div>}
         {!displayNoDataMessage &&
-          displayedArticles.map((article) => <ArticleCard article={article} />)}
+          displayedArticles.map((article) => (
+            <ArticleCard article={article} /> //displays articles as cards
+          ))}{" "}
       </div>
       <div className="flex flex-start">
         {!displayNoDataMessage && (

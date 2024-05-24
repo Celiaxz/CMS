@@ -19,8 +19,9 @@ const AuthContextWrapper = (props: any) => {
     setIsLoggedIn(false);
     setUser(null);
     navigate("/");
-  };
+  }; // not in use yet, to remove token from local storage
 
+  //sends a login request, if sucessful, store the token, update state and vaigate to the articles page
   const handleLogin = async (username: any, password: any) => {
     try {
       const response = await axios.post(`${BASE_URL}users/login`, {
@@ -32,7 +33,6 @@ const AuthContextWrapper = (props: any) => {
         localStorage.setItem("authToken", response.data.token);
         setIsLoggedIn(true);
         setUser(response.data.currentUser);
-        //navigate to home for now, we'll see later where to redirect
         navigate("/article");
       }
     } catch (error: any) {
@@ -41,14 +41,17 @@ const AuthContextWrapper = (props: any) => {
     }
   };
 
+  //check if a token is stored in local storage & verifies it
+  // updates state based on token validity
+  // navigate to homepage if token is valid
   const authenticateUser = async () => {
     //grab the token that was previously stored and named "authToken" in login component
     const tokenInStorage = localStorage.getItem("authToken");
     setIsLoading(false);
-    //when login successed, there's a token, else not
+    //when login successed, there's a token, else
     if (tokenInStorage) {
       try {
-        //check if the token format is valid "Bearer blabla" with the backend middleware
+        //check if the token format is valid "Bearer with the backend middleware
         const response = await axios.get(`${BASE_URL}users/verify`, {
           headers: {
             authorization: `Bearer ${tokenInStorage}`,
@@ -72,7 +75,7 @@ const AuthContextWrapper = (props: any) => {
 
   useEffect(() => {
     authenticateUser();
-  }, []);
+  }, []); // once when the authenticateuser component mounts
   return (
     <AuthContext.Provider
       value={{
@@ -84,7 +87,8 @@ const AuthContextWrapper = (props: any) => {
         errorMessage,
       }}
     >
-      {props.children}
+      {props.children} // wraps children component to provide authentication
+      state and functions
     </AuthContext.Provider>
   );
 };

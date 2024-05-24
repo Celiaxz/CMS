@@ -8,6 +8,7 @@ import {
 } from "../utils";
 import Checkbox from "./Checkbox";
 
+//define interface for component props
 interface ISideBar {
   onClickTagbox: (tag: string, action: CheckboxAction) => void;
   onClickCategorybox: (tag: string, action: CheckboxAction) => void;
@@ -18,6 +19,8 @@ const Sidebar = (props: ISideBar) => {
   const [categories, setCategories] = useState([] as ICategory[]);
   const [tags, setTags] = useState([] as string[]);
 
+  //use effect to fetch categories and tags when component mounts
+  // update state with fetched data
   useEffect(() => {
     // need to wrap the aync call in a function
     // as useEffect does not support calling async functions directly

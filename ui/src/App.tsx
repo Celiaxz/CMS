@@ -11,6 +11,8 @@ import Signup from "./components/Signup";
 function App() {
   const [selectedTags, setSelectedTags] = useState([] as string[]);
   const [selectedCategories, setSelectedCategories] = useState([] as string[]);
+
+  //hoisting- still want to keep list of selected tags/categories
   // this is called when tag checkbox is interacted with
   // if CheckBoXAction is ADD, a new tag was selected, add the new tag to list of selected tags
   // else, action is REMOVE, and we remove the tag from list of selected tags

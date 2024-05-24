@@ -7,10 +7,14 @@ interface ICheckbox {
   fieldName: string;
 }
 
+//state for checkboxaction
+// destructure fieldname & onclickcheckbox
 const Checkbox = (props: ICheckbox) => {
   const [checkboxAction, setCheckboxAction] = useState(CheckboxAction.Remove);
   const { fieldName, onClickCheckbox } = props;
 
+  //onclick handler to check but add and remove
+  // also call the onclickcheckbox callback with the tag and new action
   const onClickHandler = (tag: string) => {
     const newCheckboxAction =
       checkboxAction === CheckboxAction.Add
@@ -20,6 +24,8 @@ const Checkbox = (props: ICheckbox) => {
     onClickCheckbox(tag, newCheckboxAction);
   };
 
+  //renders a checkbox
+  //calls handler when you click on the checkbox
   return (
     <>
       <label key={fieldName}>

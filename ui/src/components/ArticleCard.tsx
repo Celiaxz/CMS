@@ -1,14 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { IArticle } from "../utils";
 
+//define interface to show prop structure for this component
 interface IArticleCard {
   article: IArticle;
 }
 
+//component takes Iarticlecard as props
+// destructure artixle from props
 const ArticleCard = (props: IArticleCard) => {
   const navigate = useNavigate();
   const { article } = props;
 
+  //will take the id of a certin article then navigate to the detail
   const onClickArticle = (id: number) => {
     navigate(`/article/${id}`);
   };

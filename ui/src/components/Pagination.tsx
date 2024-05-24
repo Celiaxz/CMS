@@ -4,6 +4,11 @@ interface IPagination {
   updateCurrentPage: (pageNumber: number) => void;
 }
 
+// initialize component
+// destructure total page and updatecurrentpage from props
+// initialize pageNumbers to empty array
+//loop and generate number of page from 1 to totlapge
+//push method to add new items to end of an array
 const Pagination = (props: IPagination) => {
   const { totalPage, updateCurrentPage } = props;
   const pageNumbers = [];
@@ -12,6 +17,8 @@ const Pagination = (props: IPagination) => {
     pageNumbers.push(i);
   }
 
+  //maps over pagenumbers to render pagination buttons (objects)
+  //calls updatecurrentpage setter when button is clicked
   return (
     <nav>
       <ul className=" flex gap-2 mt-8">
