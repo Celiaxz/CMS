@@ -43,7 +43,7 @@ mongoose
   .catch((err) => {
     console.error("Error connecting to mongo: ", err);
   });
-/
+
 //define route for requests, when request is made to specific path
 //callback function is executed
 // user routes
